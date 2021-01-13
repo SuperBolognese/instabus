@@ -7,6 +7,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="4dp"
     android:onClick="showBusStop"
+    android:layout_marginBottom="10dp"
     >
 
     <LinearLayout
@@ -21,7 +22,8 @@
 
             android:layout_marginBottom="10dp"
             tools:srcCompat="@tools:sample/avatars"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            />
 
         <TextView
             android:id="@+id/image_title"
@@ -30,6 +32,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:text="Title"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"/>
 
 

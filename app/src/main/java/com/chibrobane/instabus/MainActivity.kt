@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             c.join()
         }
         // TODO : Stocker le fichier JSON sur le téléphone afin de l'utiliser pour un mode hors-ligne
-        
+
         val recyclerView = findViewById<RecyclerView>(R.id.bus_stop_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         busAdapter = BusStopAdapter(recyclerView, this, busStops as MutableList<BusStop>)
