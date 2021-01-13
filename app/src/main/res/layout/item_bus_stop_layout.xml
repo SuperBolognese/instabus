@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
     android:onClick="showBusStop"
     >
 
@@ -14,7 +16,7 @@
 
         <TextView
             android:id="@+id/txt_name"
-            android:text="Name"
+            android:text="@string/default_image_title"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,7 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_column="2"
-            app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24" />
+            app:srcCompat="@drawable/ic_baseline_arrow_right_alt_24"
+            android:contentDescription="@string/default_image_description" />
     </GridLayout>
 
 

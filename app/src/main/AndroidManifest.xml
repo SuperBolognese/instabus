@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -23,6 +24,11 @@
 
         <activity android:name=".BusStopDetailsActivity"
             android:parentActivityName=".MainActivity">
+
+        </activity>
+
+        <activity android:name=".NewImageActivity"
+            android:parentActivityName=".BusStopDetailsActivity">
 
         </activity>
 

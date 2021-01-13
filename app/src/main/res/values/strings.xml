@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">InstaBus</string>
+
+    <string name="default_image_description">Image</string>
+
+    <string name="add_new_image">Ajouter une image</string>
+
+    <string name="default_image_title">Titre</string>
+    <string name="default_image_date">Le 01&#8211;01&#8211;01</string>
+
+    <string name="send_image">Envoyer</string>
+
+    <!-- Menus strings -->
+    <string name="menu_view_image">Voir</string>
+    <string name="menu_delete_image">Supprimer</string>
 </resources>
