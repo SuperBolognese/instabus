@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopDetailsAdapter
 import com.chibrobane.instabus.data.BusStopDetails
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class BusStopDetailsActivity : AppCompatActivity()  {
 
@@ -27,15 +28,26 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         setContentView(R.layout.bus_stop_details_activity)
 
         createFalseData()
-        // TODO : Créer un bouton permettant de prendre une nouvelle photo, une base de données SQL, et stocker les images sur un serveur pour les récupérer ici par la suite
+        // TODO : Créer une base de données SQL, et stocker les images sur un serveur pour les récupérer ici par la suite
 
-        title = intent.getStringExtra("name_bus_stop")
+        title = intent.getStringExtra("name_bus_stop")  // On donne le nom de l'arrêt à l'activité
+
         val recyclerView = findViewById<RecyclerView>(R.id.bus_images_recyclerview)
         recyclerView.layoutManager = GridLayoutManager(this, 3)
         adapter = BusStopDetailsAdapter(this, busStopImages as MutableList<BusStopDetails>)
         recyclerView.adapter = adapter
 
         registerForContextMenu(recyclerView)
+
+        val addImageButton : FloatingActionButton = findViewById(R.id.add_bus_image)
+        addImageButton.setOnClickListener {
+            // Créé une nouvelle activité permettant de prendre une photo et ajouter un titre
+            val intent = Intent(this, NewImageActivity::class.java).apply {
+                putExtra("parent", title)
+            }
+            startActivityForResult(intent, codeRequestNewImage)
+        }
+
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -43,13 +55,13 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         // Soit pour supprimer, soit pour voir une image
         return return when(item.itemId) {
             R.id.view_image -> {
-                Log.i("Context", "Voir l'image")
+                // TODO : Afficher l'image en grand
                 Toast.makeText(this, "Voir l'image", Toast.LENGTH_LONG).show()
                 true
             }
 
             R.id.delete_image -> {
-                Log.i("Context", "Supprimer l'image")
+                // TODO : Supprimer l'image de la base de données
                 Toast.makeText(this, "Supprimer l'image", Toast.LENGTH_LONG).show()
                 true
             }
@@ -67,13 +79,6 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         busStopImages.add(BusStopDetails("Titre 4", null, "15-02-2012"))
     }
 
-    fun newImage(view: View) {
-        // Fonction appelée lorsque l'utilisateur clique sur le bouton "+" en bas à droite
-        // Créé une nouvelle activité permettant de prendre une photo et ajouter un titre
-        var intent = Intent(this, NewImageActivity::class.java)
-        startActivityForResult(intent, codeRequestNewImage)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -85,6 +90,4 @@ class BusStopDetailsActivity : AppCompatActivity()  {
             // TODO : Envoyer l'image et son titre à la base de données (très sûrement mettre l'image en base64 avant, et se moquer de la bienséance)
         }
     }
-
-
 }

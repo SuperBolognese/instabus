@@ -8,10 +8,12 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class NewImageActivity : AppCompatActivity() {
@@ -20,9 +22,11 @@ class NewImageActivity : AppCompatActivity() {
     lateinit var imageView: ImageView
     private var imageBitmap : Bitmap? = null
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_new_image)
+        title = "Ajouter une image"
 
         if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
             requestPermissions(arrayOf(Manifest.permission.CAMERA), requestCodeCamera)
@@ -42,9 +46,10 @@ class NewImageActivity : AppCompatActivity() {
                 // On récupère le titre
                 val textInput : TextInputLayout = findViewById(R.id.title_new_image)
 
-                val returnIntent = Intent()
-                returnIntent.putExtra("image", imageBitmap)  // On renvoie l'image
-                returnIntent.putExtra("title", textInput.editText?.text)  // Ainsi que son titre
+                val returnIntent = Intent().apply {
+                    putExtra("image", imageBitmap)  // On renvoie l'image
+                    putExtra("title", textInput.editText!!.text.toString().trim())  // Ainsi que son titre
+                }
                 setResult(RESULT_OK, returnIntent)  // On retourne le résultat de l'activité
                 finish()  // Et on la termine
             }

@@ -28,9 +28,7 @@
         </activity>
 
         <activity android:name=".NewImageActivity"
-            android:parentActivityName=".BusStopDetailsActivity">
-
-        </activity>
+            android:parentActivityName=".BusStopDetailsActivity"/>
 
     </application>
 
