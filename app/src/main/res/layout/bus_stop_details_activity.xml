@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".BusStopDetailsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bus_stop_recycler_view"
+        android:id="@+id/bus_images_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 </RelativeLayout>

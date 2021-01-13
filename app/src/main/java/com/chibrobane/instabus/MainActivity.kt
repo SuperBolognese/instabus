@@ -2,30 +2,34 @@ package com.chibrobane.instabus
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.annotation.WorkerThread
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopAdapter
 import com.chibrobane.instabus.data.BusStop
 import com.chibrobane.instabus.data.BusStopService
+import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext
 
 class MainActivity : AppCompatActivity() {
     private val url = "http://barcelonaapi.marcpous.com/"
 
-    private var busStops : List<BusStop> = ArrayList<BusStop>()
+    private var busStops : List<BusStop> = ArrayList()
     private lateinit var busAdapter : BusStopAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
 
         runBlocking {
             val c = CoroutineScope(Dispatchers.IO).launch {
@@ -33,11 +37,12 @@ class MainActivity : AppCompatActivity() {
             }
             c.join()
         }
-
-        var recycler_view = findViewById<RecyclerView>(R.id.bus_stop_recycler_view)
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        busAdapter = BusStopAdapter(recycler_view, this, busStops as MutableList<BusStop>)
-        recycler_view.adapter = busAdapter
+        // TODO : Stocker le fichier JSON sur le téléphone afin de l'utiliser pour un mode hors-ligne
+        
+        val recyclerView = findViewById<RecyclerView>(R.id.bus_stop_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        busAdapter = BusStopAdapter(recyclerView, this, busStops as MutableList<BusStop>)
+        recyclerView.adapter = busAdapter
     }
 
     @WorkerThread
@@ -66,6 +71,32 @@ class MainActivity : AppCompatActivity() {
         val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
         return activeNetwork?.isConnectedOrConnecting?:false
+    }
+
+    fun getStopByName(name: String) : BusStop? {
+        // Fonction permettant d'obtenir un arrêt à partir de son nom
+        for (busStop in busStops) {
+            if (busStop.street_name == name) {
+                return busStop
+            }
+        }
+        return null
+    }
+
+    fun showBusStop(view: View) {
+        // Fonction appelée lorsqu'on clique sur un des arrêts de la liste
+        // Permet d'ouvrir une nouvelle activité
+
+        // On commence d'abord par récupérer le nom de l'arrêt sur lequel l'utilisateur à cliqué
+        val textView : MaterialTextView = view.findViewById(R.id.txt_name)
+        // On s'en sert ensuite pour récupérer l'objet en lui-même
+        val stop = getStopByName(textView.text.toString())
+
+        // On peut maintenant créer une intent afin de créer une activité en lui envoyant les informations requises
+        val intent = Intent(this, BusStopDetailsActivity::class.java).apply {
+            putExtra("name_bus_stop", stop?.street_name)
+        }
+        startActivity(intent)
     }
 
 }
