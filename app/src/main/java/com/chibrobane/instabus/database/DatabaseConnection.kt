@@ -27,7 +27,7 @@ object DatabaseConnection {
 
     private lateinit var context: Context
 
-    private const val url : String = "http://192.168.1.70/"  // Adresse de mon serveur, détenant une API pour communiquer avec la BDD
+    private const val url : String = "http://90.35.128.208/"  // Adresse de mon serveur, détenant une API pour communiquer avec la BDD
     private val client = OkHttpClient.Builder().build()
     private val retrofit = Retrofit.Builder().baseUrl(url)
             .addConverterFactory(MoshiConverterFactory.create()).client(client).build()
