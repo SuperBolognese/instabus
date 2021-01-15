@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -34,7 +35,15 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_stop_details_activity)
 
+<<<<<<< HEAD
         db.setContext(applicationContext)
+=======
+        setSupportActionBar(findViewById(R.id.mytoolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        createFalseData()
+        // TODO : Créer une base de données SQL, et stocker les images sur un serveur pour les récupérer ici par la suite
+>>>>>>> 4423be64facf42c9a72a74b9efdae5a0a04dc702
 
         title = intent.getStringExtra("name_bus_stop")  // On donne le nom de l'arrêt à l'activité
         id_stop = intent.getIntExtra("id_bus_stop", -1)
@@ -55,10 +64,18 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         addImageButton.setOnClickListener {
             // Créé une nouvelle activité permettant de prendre une photo et ajouter un titre
             val intent = Intent(this, NewImageActivity::class.java).apply {
-                putExtra("parent", title)
+                putExtra("parent", title!!)
             }
             startActivityForResult(intent, codeRequestNewImage)
         }
+<<<<<<< HEAD
+=======
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.secondary_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+>>>>>>> 4423be64facf42c9a72a74b9efdae5a0a04dc702
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {

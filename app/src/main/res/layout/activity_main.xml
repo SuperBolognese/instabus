@@ -6,9 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary_dark"
+        app:popupTheme="@style/Theme.Design.Light"
+        app:titleTextColor="@color/white"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bus_stop_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mytoolbar"/>
+
 </RelativeLayout>
