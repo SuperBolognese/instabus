@@ -1,2 +1,4 @@
+include ':postgresql-42.2.18'
+include ':postgresql-42.2.18'
 include ':app'
 rootProject.name = "InstaBus"

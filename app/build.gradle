@@ -48,6 +48,7 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation files('/home/gregory/AndroidStudioProjects/instabus/app/libs/postgresql-42.2.18.jar')
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

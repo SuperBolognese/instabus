@@ -7,7 +7,6 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.WorkerThread
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -95,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         // On peut maintenant créer une intent afin de créer une activité en lui envoyant les informations requises
         val intent = Intent(this, BusStopDetailsActivity::class.java).apply {
             putExtra("name_bus_stop", stop?.street_name)
+            putExtra("id_bus_stop", stop?.id)
         }
         startActivity(intent)
     }

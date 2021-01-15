@@ -36,6 +36,11 @@
             android:layout_marginTop="5dp"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/id_image_bus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/image_date"
