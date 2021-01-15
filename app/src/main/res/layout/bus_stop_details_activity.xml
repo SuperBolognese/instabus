@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".BusStopDetailsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mytoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary_dark"
+        app:popupTheme="@style/Theme.Design.Light"
+        app:titleTextColor="@color/white"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bus_images_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mytoolbar"
+        android:layout_marginTop="7dp"/>
 
     <!-- Couleur du FAB = colorAccent à modifier dans le fichier thème -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

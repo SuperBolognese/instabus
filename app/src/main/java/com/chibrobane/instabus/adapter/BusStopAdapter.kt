@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.R
 import com.chibrobane.instabus.data.BusStop
 
-class BusStopAdapter (
-    val recyclerView: RecyclerView,
+class BusStopAdapter (//transformer les infos des arrêts de l'API en item de la recyclerView
     val activity: Activity,
     val items: MutableList<BusStop>): RecyclerView.Adapter<BusStopAdapter.ViewHolder>() {
 

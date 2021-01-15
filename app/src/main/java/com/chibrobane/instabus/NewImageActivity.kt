@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
@@ -39,7 +40,7 @@ class NewImageActivity : AppCompatActivity() {
         }
 
         // Lorsqu'on clique sur le bouton envoyer, on retourne l'image
-        val buttonSend : MaterialButton = findViewById(R.id.button_send_new_image)
+        val buttonSend : AppCompatButton = findViewById(R.id.button_send_new_image)
         buttonSend.setOnClickListener {
             // On envoie l'image seulement s'il y en a une
             if (imageBitmap != null) {

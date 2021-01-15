@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -27,6 +28,9 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_stop_details_activity)
 
+        setSupportActionBar(findViewById(R.id.mytoolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         createFalseData()
         // TODO : Créer une base de données SQL, et stocker les images sur un serveur pour les récupérer ici par la suite
 
@@ -43,11 +47,15 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         addImageButton.setOnClickListener {
             // Créé une nouvelle activité permettant de prendre une photo et ajouter un titre
             val intent = Intent(this, NewImageActivity::class.java).apply {
-                putExtra("parent", title)
+                putExtra("parent", title!!)
             }
             startActivityForResult(intent, codeRequestNewImage)
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.secondary_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {

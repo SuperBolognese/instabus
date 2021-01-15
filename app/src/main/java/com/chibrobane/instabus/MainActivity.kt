@@ -1,3 +1,4 @@
+
 package com.chibrobane.instabus
 
 import android.annotation.SuppressLint
@@ -8,7 +9,11 @@ import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(findViewById(R.id.mytoolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        //créer une coroutine -> marche pas tant qu'on est pas connecté à l'API
         runBlocking {
             val c = CoroutineScope(Dispatchers.IO).launch {
                 callWebService()
@@ -40,9 +49,14 @@ class MainActivity : AppCompatActivity() {
         // TODO : Stocker le fichier JSON sur le téléphone afin de l'utiliser pour un mode hors-ligne
 
         val recyclerView = findViewById<RecyclerView>(R.id.bus_stop_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        busAdapter = BusStopAdapter(recyclerView, this, busStops as MutableList<BusStop>)
+        recyclerView.layoutManager = LinearLayoutManager(this)//afficher en liste verticale
+        busAdapter = BusStopAdapter( this, busStops as MutableList<BusStop>)
         recyclerView.adapter = busAdapter
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     @WorkerThread
@@ -83,18 +97,22 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun showBusStop(view: View) {
-        // Fonction appelée lorsqu'on clique sur un des arrêts de la liste
-        // Permet d'ouvrir une nouvelle activité
+    fun showBusStop(view : View) {
 
         // On commence d'abord par récupérer le nom de l'arrêt sur lequel l'utilisateur à cliqué
-        val textView : MaterialTextView = view.findViewById(R.id.txt_name)
+        val textView : TextView = view.findViewById(R.id.txt_name)
         // On s'en sert ensuite pour récupérer l'objet en lui-même
         val stop = getStopByName(textView.text.toString())
 
         // On peut maintenant créer une intent afin de créer une activité en lui envoyant les informations requises
         val intent = Intent(this, BusStopDetailsActivity::class.java).apply {
             putExtra("name_bus_stop", stop?.street_name)
+        }
+        startActivity(intent)
+    }
+
+    fun onLaunchMaps(item: MenuItem) {
+        val intent = Intent(this, MapsActivity::class.java).apply {
         }
         startActivity(intent)
     }
