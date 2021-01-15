@@ -8,12 +8,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-<<<<<<< HEAD
-=======
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
->>>>>>> 4423be64facf42c9a72a74b9efdae5a0a04dc702
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast

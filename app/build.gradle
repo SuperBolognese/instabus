@@ -48,12 +48,8 @@ dependencies {
 
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-<<<<<<< HEAD
-    implementation files('/home/gregory/AndroidStudioProjects/instabus/app/libs/postgresql-42.2.18.jar')
-=======
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
->>>>>>> 4423be64facf42c9a72a74b9efdae5a0a04dc702
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
