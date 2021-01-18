@@ -11,6 +11,8 @@ import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -35,14 +37,10 @@ class BusStopDetailsActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bus_stop_details_activity)
 
-
         db.setContext(applicationContext)
 
         setSupportActionBar(findViewById(R.id.mytoolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        createFalseData()
-        // TODO : Créer une base de données SQL, et stocker les images sur un serveur pour les récupérer ici par la suite
 
         title = intent.getStringExtra("name_bus_stop")  // On donne le nom de l'arrêt à l'activité
         id_stop = intent.getIntExtra("id_bus_stop", -1)
@@ -77,30 +75,17 @@ class BusStopDetailsActivity : AppCompatActivity()  {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         // Fonction permettant de vérifier quand un item est sélectionné dans le menu contextuel
         // Soit pour supprimer, soit pour voir une image
-        return return when(item.itemId) {
-            R.id.view_image -> {
-                // TODO : Afficher l'image en grand
-                Toast.makeText(this, "Voir l'image", Toast.LENGTH_LONG).show()
-                true
-            }
 
-            R.id.delete_image -> {
+        return return when(item.order) {
+            1 -> {
                 // TODO : Supprimer l'image de la base de données
+                db.removeImage(item.itemId)
                 Toast.makeText(this, "Supprimer l'image", Toast.LENGTH_LONG).show()
                 true
             }
             else -> return false
         }
 
-    }
-
-    fun createFalseData() {
-        // Fonction temporaire afin de créer de fausses données
-        // Présente dans le seul but de tester le layout, le temps d'avoir de réelles données
-        //busStopImages.add(BusStopDetails("Titre 1", null, "06-12-2001"))
-        //busStopImages.add(BusStopDetails("Titre 2", null, "26-10-2002"))
-        //busStopImages.add(BusStopDetails("Titre 3", null, "14-02-2012"))
-        //busStopImages.add(BusStopDetails("Titre 4", null, "15-02-2012"))
     }
 
     fun encodeImage(image: Bitmap?) : String {
