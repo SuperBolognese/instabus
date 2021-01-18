@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.mytoolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)//affichage de la toolbar
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)//affichage de la toolbar
 
         //créer une coroutine -> marche pas tant qu'on est pas connecté à l'API
         runBlocking {

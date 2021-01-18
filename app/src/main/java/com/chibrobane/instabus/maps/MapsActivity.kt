@@ -33,7 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         setSupportActionBar(findViewById(R.id.mytoolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        title = intent.getStringExtra("Carte de Barça")
+        title = "Carte"
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
