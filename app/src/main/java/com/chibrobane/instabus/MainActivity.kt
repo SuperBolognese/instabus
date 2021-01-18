@@ -8,28 +8,26 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopAdapter
 import com.chibrobane.instabus.data.BusStop
 import com.chibrobane.instabus.data.BusStopService
-import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext
 
 class MainActivity : AppCompatActivity() {
     private val url = "http://barcelonaapi.marcpous.com/"
 
-    private var busStops : List<BusStop> = ArrayList()
+    companion object {
+        var busStops : List<BusStop> = ArrayList()
+    }
     private lateinit var busAdapter : BusStopAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
