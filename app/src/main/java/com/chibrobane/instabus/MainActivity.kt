@@ -8,11 +8,14 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptIntrinsicYuvToRGB
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.annotation.WorkerThread
+import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopAdapter
@@ -26,7 +29,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class MainActivity : AppCompatActivity() {
     private val url = "http://barcelonaapi.marcpous.com/"
 
-    companion object {
+    companion object {//on met la liste des bus en companion object pour ensuite l'utiliser dans MapActivity
          var busStops: List<BusStop> = ArrayList()
     }
 
@@ -37,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.mytoolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)//affichage de la toolbar
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
 
         //créer une coroutine -> marche pas tant qu'on est pas connecté à l'API
         runBlocking {

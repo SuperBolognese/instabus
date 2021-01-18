@@ -10,8 +10,7 @@
         android:id="@+id/mytoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary_dark"
-        app:popupTheme="@style/Theme.Design.Light"
+        android:background="#FF9A49"
         app:titleTextColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
