@@ -15,14 +15,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.117"
-        tools:src="@drawable/ic_baseline_camera_24" />
+        android:src="@drawable/ic_baseline_camera_alt_24" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title_new_image"
         android:layout_width="385dp"
         android:layout_height="60dp"
         android:layout_marginTop="51dp"
-        android:backgroundTint="#FF9A49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
@@ -40,7 +39,6 @@
         android:id="@+id/button_send_new_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FF9A49"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

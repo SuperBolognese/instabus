@@ -21,16 +21,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.logging.Handler
+import java.util.concurrent.TimeUnit
 
 object DatabaseConnection {
 
     private lateinit var context: Context
 
-    private const val url : String = "http://90.35.128.208/"  // Adresse de mon serveur, détenant une API pour communiquer avec la BDD
-    private val client = OkHttpClient.Builder().build()
+    private const val url : String = "http://90.35.126.208:80/"  // Adresse de mon serveur, détenant une API pour communiquer avec la BDD
+    private val client = OkHttpClient.Builder().readTimeout(60, TimeUnit.SECONDS).connectTimeout(60, TimeUnit.SECONDS).build()
     private val retrofit = Retrofit.Builder().baseUrl(url)
             .addConverterFactory(MoshiConverterFactory.create()).client(client).build()
+
     private val service = retrofit.create(DatabaseService::class.java)
 
     fun setContext(context: Context) {
