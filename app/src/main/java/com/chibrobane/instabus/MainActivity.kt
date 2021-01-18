@@ -8,36 +8,36 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopAdapter
 import com.chibrobane.instabus.data.BusStop
 import com.chibrobane.instabus.data.BusStopService
-import com.google.android.material.textview.MaterialTextView
+import com.chibrobane.instabus.maps.MapsActivity
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import kotlin.reflect.jvm.internal.impl.types.checker.TypeCheckerContext
 
 class MainActivity : AppCompatActivity() {
     private val url = "http://barcelonaapi.marcpous.com/"
 
-    private var busStops : List<BusStop> = ArrayList()
-    private lateinit var busAdapter : BusStopAdapter
+    companion object {
+         var busStops: List<BusStop> = ArrayList()
+    }
+
+    private lateinit var busAdapter: BusStopAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.mytoolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)//affichage de la toolbar
 
         //créer une coroutine -> marche pas tant qu'on est pas connecté à l'API
         runBlocking {
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = busAdapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { //on remplit la toolbar
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -117,5 +117,4 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
 }
