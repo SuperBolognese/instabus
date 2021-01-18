@@ -19,4 +19,5 @@
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">AIzaSyA3YFgUPyGq_danFfYSyyfu8ePySnnvNq0</string>
     <string name="menu_icon_more">Menu icon more</string>
+    <string name="title_maps">Carte</string>
 </resources>

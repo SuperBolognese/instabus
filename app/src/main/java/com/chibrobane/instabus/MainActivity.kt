@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopAdapter
 import com.chibrobane.instabus.data.BusStop
 import com.chibrobane.instabus.data.BusStopService
+import com.chibrobane.instabus.maps.MapsActivity
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.mytoolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)//affichage de la toolbar
 
         //créer une coroutine -> marche pas tant qu'on est pas connecté à l'API
         runBlocking {
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = busAdapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { //on remplit la toolbar
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
@@ -115,5 +116,4 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
 }
