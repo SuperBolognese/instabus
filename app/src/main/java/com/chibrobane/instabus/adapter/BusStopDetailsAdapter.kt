@@ -41,24 +41,23 @@ class BusStopDetailsAdapter
         holder.title.text = item.title
         holder.desc.text = ("Le " + item.date_of_creation)
         holder.image.setImageBitmap(decodeImage(item.image))
-        holder.idImage.text = ("" + item.id_image)
+        holder.idImage = item.id_image
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener {
         val title : TextView = itemView.findViewById(R.id.image_title)
         val desc : TextView = itemView.findViewById(R.id.image_date)
         val image : ImageView = itemView.findViewById(R.id.image_stop)
-        val idImage : TextView = itemView.findViewById(R.id.id_image_bus)
+        var idImage : Int = 0
 
         init {
             itemView.setOnCreateContextMenuListener(this)
         }
 
         override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
-            // Ici, nous faisons en sorte de créer un menu contextuel afin de les supprimer par la suite
+            // Ici, nous faisons en sorte de créer un menu contextuel afin de supprimer des images
             // (Quand on fait un click long sur un des éléments)
-            val menuInflater = MenuInflater(v?.context)
-            menuInflater.inflate(R.menu.bus_stop_image_menu, menu)
+            menu?.add(0, idImage, 1, "Supprimer")
         }
     }
 }
