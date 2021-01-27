@@ -117,4 +117,11 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
+
+    fun launchMainAct(item: MenuItem){
+        val intent = Intent(this, MainActivity::class.java).apply{
+        }
+        startActivity(intent)
+    }
+
 }

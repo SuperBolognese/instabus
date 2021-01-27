@@ -18,6 +18,6 @@
     <string name="menu_icon_maps">Menu Icon Maps</string>
     <string name="title_activity_maps">Map</string>
     <string name="google_maps_key">AIzaSyA3YFgUPyGq_danFfYSyyfu8ePySnnvNq0</string>
-    <string name="menu_icon_more">Menu icon more</string>
-    <string name="title_maps">Carte</string>
+    <string name="go_map">Map</string>
+    <string name="go_main">Menu principal</string>
 </resources>

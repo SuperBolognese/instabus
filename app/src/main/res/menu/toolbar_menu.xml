@@ -12,4 +12,12 @@
         app:showAsAction="ifRoom"
         android:onClick="onLaunchMaps"/>
 
+    <item
+        android:id="@+id/icon_home"
+        android:orderInCategory="300"
+        android:title="@string/go_main"
+        android:icon="@drawable/ic_baseline_home_24"
+        app:showAsAction="ifRoom"
+        android:onClick="launchMainAct"/>
+
 </menu>

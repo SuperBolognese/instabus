@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.chibrobane.instabus.BusStopDetailsActivity
 import com.chibrobane.instabus.MainActivity
 import com.chibrobane.instabus.R
@@ -47,7 +48,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.secondary_menu, menu)
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -79,5 +80,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onMarkerClick(marker: Marker): Boolean {
         showBuses(marker.title)
         return true
+    }
+
+    fun onLaunchMaps(item: MenuItem) {
+        val intent = Intent(this, MapsActivity::class.java).apply {
+        }
+        startActivity(intent)
+    }
+
+    fun launchMainAct(item: MenuItem){
+        val intent = Intent(this, MainActivity::class.java).apply{
+        }
+        startActivity(intent)
     }
 }

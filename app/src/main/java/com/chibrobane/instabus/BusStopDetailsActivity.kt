@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chibrobane.instabus.adapter.BusStopDetailsAdapter
 import com.chibrobane.instabus.data.BusStopDetails
 import com.chibrobane.instabus.database.DatabaseConnection
+import com.chibrobane.instabus.maps.MapsActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.ByteArrayOutputStream
 
@@ -68,7 +69,7 @@ class BusStopDetailsActivity : AppCompatActivity()  {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.secondary_menu, menu)
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -111,5 +112,17 @@ class BusStopDetailsActivity : AppCompatActivity()  {
             // TODO : Envoyer l'image et son titre à la base de données (très sûrement mettre l'image en base64 avant, et se moquer de la bienséance)
             db.addImageTo(id_stop, title!!, encodeImage(image))
         }
+    }
+
+    fun onLaunchMaps(item: MenuItem) {
+        val intent = Intent(this, MapsActivity::class.java).apply {
+        }
+        startActivity(intent)
+    }
+
+    fun launchMainAct(item: MenuItem){
+        val intent = Intent(this, MainActivity::class.java).apply{
+        }
+        startActivity(intent)
     }
 }
